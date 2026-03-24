@@ -27,3 +27,5 @@ It’s basically a mix of:
 - and maybe a mini homemade ML/DL package by the end
 
 Good luck to me :)
+
+PS : I won't use AI to generate code or i'll be kinda meaningless.
