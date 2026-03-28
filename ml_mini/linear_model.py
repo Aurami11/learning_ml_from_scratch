@@ -8,6 +8,7 @@ class LinearRegression:
          self.n_iterations_ = None
    def _generate_coef(self, n_features):
         "Initialize coefficients and intercept with random values"
+        np.random.seed(42)  # For reproducibility
         self.coef_ = np.random.rand(n_features)
         self.intercept_ = np.random.rand(1)
 
