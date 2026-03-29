@@ -15,4 +15,5 @@ Chapter 2 Statistical Learning is great to fix the basic knowledge statistical l
 
 #### Linear Reg
 
-- For batch method : theta <- theta - alpha * X.T @ (y^ - y)
+- Batch Gradient Descent : Try to minimize the loss function by reducing the loss on all the training data. It's good for a small dataset but as the dataset get bigger, it become computationally heavy.
+- Stochastic Gradient Descent : Try to minimize the loss function by minimizing the loss on each training data. Because, here we approach the problem in an incremental way, it's less heavy on bigger dataset and it's also easy to add new training data without having to retrain the model.
