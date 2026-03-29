@@ -17,9 +17,11 @@ class LinearRegression:
         bias = np.ones((n_samples, 1))
         return np.hstack((bias, X))
 
-   def predict(self, X):
+   def predict(self, X, add_bias=True):
         "Predict linear regression output given input X"
 
+        if add_bias:
+            X = self.X_bias(X)
         return X @ self.coef_
    
    def _batch_gradient_descent(self, X, y, learning_rate, max_iter, eps=1e-6, _start_coef=None):
@@ -34,7 +36,7 @@ class LinearRegression:
          self._generate_coef(n_features)
 
       for i in range(max_iter):
-         y_pred = self.predict(X)
+         y_pred = self.predict(X, add_bias=False)
 
          loss_gradient = X.T @ (y_pred - y)
 
@@ -59,7 +61,7 @@ class LinearRegression:
          self._generate_coef(n_features)
     
       for x, y in zip(X, y):
-         y_pred = self.predict(x)
+         y_pred = self.predict(x, add_bias=False)
          loss_gradient = (y_pred - y) * x
 
          self.coef_ -= learning_rate * loss_gradient

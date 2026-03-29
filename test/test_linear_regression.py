@@ -8,7 +8,6 @@ def test_linear_regression(X, y, method):
     model.fit(X, y, learning_rate=0.01, n_iterations=3000, method=method)
 
     print("Coefficients:", model.coef_)
-    print("Intercept:", model.intercept_)
     print("Number of iterations:", model.n_iterations_)
 
     y_pred = model.predict(X)
