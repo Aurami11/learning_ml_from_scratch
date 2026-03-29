@@ -4,25 +4,27 @@ import matplotlib.pyplot as plt
 
 def test_linear_regression(X, y, method):
 
-    model = linear_model.LinearRegression()
-    model.fit(X, y, learning_rate=0.01, n_iterations=3000, method=method)
+   model = linear_model.LinearRegression()
+   model.fit(X, y, learning_rate=0.01, n_iterations=3000, method=method)
 
-    print("Coefficients:", model.coef_)
-    print("Number of iterations:", model.n_iterations_)
+   print("Coefficients:", model.coef_)
+   print("Number of iterations:", model.n_iterations_)
 
-    y_pred = model.predict(X)
+   y_pred = model.predict(X)
 
-    plt.plot(model.loss_history_)
-    plt.xlabel("Iteration")
-    plt.ylabel("Loss")
-    plt.title("Loss History")
-    plt.show()
+   if method == 'batch':
+      plt.plot(model.loss_history_)
+      plt.xlabel("Iteration")
+      plt.ylabel("Loss")
+      plt.title("Loss History")
+      plt.show()
 
-    plt.scatter(y, y_pred)
-    plt.xlabel("Actual Values")
-    plt.ylabel("Predicted Values")
-    plt.title("Predicted vs Actual Values")
-    plt.show()
+   plt.scatter(y, y_pred)
+   plt.xlabel("Actual Values")
+   plt.ylabel("Predicted Values")
+   plt.plot([y.min(), y.max()], [y.min(), y.max()], 'r--')  # Line for perfect predictions
+   plt.title("Predicted vs Actual Values")
+   plt.show()
 
 if __name__ == "__main__":
    X = np.array([
