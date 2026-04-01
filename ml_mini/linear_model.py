@@ -87,3 +87,42 @@ class LinearRegression:
          self._stochastic_gradient_descent(X, y, learning_rate, _start_coef=self.coef_)
       else:
          raise ValueError("Model has not been fitted yet. Please call fit() before refit().")
+
+
+class LocallyWeightedLinearRegression(LinearRegression):
+   def __init__(self, tau=1.0):
+      self.tau = tau
+      self.coef_ = None
+      self.loss_history_ = []
+      self.n_iterations_ = None
+
+   def _gaussian_kernel(self, x, X):
+      distances = np.linalg.norm(X - x, axis=1)
+      weights = np.exp(- (distances ** 2) / (2 * self.tau ** 2))
+      return weights
+   
+   def predict(self, X, add_bias=True):
+      if add_bias:
+         X = self.X_bias(X)
+
+      return X @ self.coef_
+   
+   def fit(self, x, X, y, learning_rate=0.01, max_iter=1000, eps=1e-6):
+      """Fit the model using locally weighted linear regression for a single query point x"""
+
+      X = self.X_bias(X)
+      x = self.X_bias(x.reshape(1, -1)).flatten()
+
+      self._generate_coef(X.shape[1])
+
+      for i in range(max_iter):
+         y_pred = self.predict(X, add_bias=False)
+         linear_weighted_loss = (y_pred - y) * self._gaussian_kernel(x, X)
+
+         loss_gradient = X.T @ linear_weighted_loss
+
+         self.coef_ -= learning_rate * loss_gradient
+         self.loss_history_.append(np.mean(linear_weighted_loss ** 2))
+         if i > 0 and abs(self.loss_history_[-2] - self.loss_history_[-1]) < eps:
+            self.n_iterations_ = i
+            break
