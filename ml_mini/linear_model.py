@@ -24,10 +24,11 @@ class LinearRegression:
             X = self.X_bias(X)
         return X @ self.coef_
    
-   def _batch_gradient_descent(self, X, y, learning_rate, max_iter, eps=1e-6, _start_coef=None):
+   def _batch_gradient_descent(self, X, y, learning_rate, max_iter, eps=1e-6, _start_coef=None, add_bias=True):
       """Batch Gradient Descent reduces the loss on the entire dataset"""
 
-      X = self.X_bias(X)
+      if add_bias:
+         X = self.X_bias(X)
       n_features = X.shape[1]
 
       if _start_coef is not None:
@@ -48,10 +49,11 @@ class LinearRegression:
             self.n_iterations_ = i
             break
          
-   def _stochastic_gradient_descent(self, X, y, learning_rate, _start_coef=None, _start_intercept=None):
+   def _stochastic_gradient_descent(self, X, y, learning_rate, _start_coef=None, _start_intercept=None, add_bias=True):
       """Stochastic Gradient Descent updates the coefficients for each training example"""
 
-      X = self.X_bias(X)
+      if add_bias:
+         X = self.X_bias(X)
       n_features = X.shape[1]
 
       if _start_coef is not None and _start_intercept is not None:

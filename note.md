@@ -28,7 +28,7 @@ Chapter 2 Statistical Learning is great to fix the basic knowledge statistical l
 ### Logistic Regression
 
 - Sigmoid functions
-- Newton Method : It's an algorithm to determine x so that for a given function f,  f(x) = 0
+- Newton Method : It's an algorithm to determine x so that for a given function f,  f(x) = 0 (To add)
   
 #### Perceptron
 
