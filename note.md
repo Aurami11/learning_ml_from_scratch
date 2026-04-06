@@ -24,3 +24,16 @@ Chapter 2 Statistical Learning is great to fix the basic knowledge statistical l
 - Non parametric model : 
   - the number of parameter grow linearly with the size of the dataset
   - we dont make an assumption on f
+
+### Logistic Regression
+
+- Sigmoid functions
+- Newton Method : It's an algorithm to determine x so that for a given function f,  f(x) = 0
+  
+#### Perceptron
+
+- Classification model that is based on a function g that is equal to 0 if < 0 and 1 if > 0
+
+### Generative Learning Algorithm
+
+- Gaussian Discrimant Analysis
