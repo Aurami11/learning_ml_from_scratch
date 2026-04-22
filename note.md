@@ -33,6 +33,7 @@ Chapter 2 Statistical Learning is great to fix the basic knowledge statistical l
 #### Perceptron
 
 - Classification model that is based on a function g that is equal to 0 if < 0 and 1 if > 0
+- The optimisation process look like a gradient descent but it is not (the function g is not differentiable)
 
 ### Generative Learning Algorithm 
 

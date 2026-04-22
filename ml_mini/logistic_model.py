@@ -1,3 +1,9 @@
+"""
+This module implements the Logistic Regression algorithm for classification tasks, as well as a simple Perceptron model. 
+The Perceptron class implements a basic perceptron learning algorithm for binary classification.
+The implementation still lack the Newton-Raphson method and multiclass classification support, which can be added in future iterations.
+"""
+
 import numpy as np
 from ml_mini.linear_model import LinearRegression
 from ml_mini.utils.preprocessing import X_bias

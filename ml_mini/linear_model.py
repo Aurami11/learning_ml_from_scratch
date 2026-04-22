@@ -1,3 +1,8 @@
+"""
+This module implements the Linear Regression algorithm for regression tasks.
+It includes both batch and stochastic gradient descent methods for optimization, as well as a locally weighted linear
+"""
+
 import numpy as np
 from ml_mini.utils.preprocessing import X_bias
 
