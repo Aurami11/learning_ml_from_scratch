@@ -34,6 +34,8 @@ Chapter 2 Statistical Learning is great to fix the basic knowledge statistical l
 
 - Classification model that is based on a function g that is equal to 0 if < 0 and 1 if > 0
 
-### Generative Learning Algorithm
+### Generative Learning Algorithm 
 
+
+- Discriminative Learning Algorithm (Opposed to Generative Learning Algorithm) based of p(X|y) (given the output, what does X should look like)and prior p(y).
 - Gaussian Discrimant Analysis
