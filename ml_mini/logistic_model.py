@@ -1,5 +1,6 @@
 import numpy as np
 from ml_mini.linear_model import LinearRegression
+from ml_mini.utils.preprocessing import X_bias
 
 class LogisticRegression(LinearRegression) :
    def __init__(self) :
@@ -13,7 +14,7 @@ class LogisticRegression(LinearRegression) :
    
    def predict_proba(self, X, add_bias=True) :
       if add_bias :
-         X = self.X_bias(X)
+         X = X_bias(X)
       linear_output = X @ self.coef_
       return self._sigmoid(linear_output)
    
@@ -33,7 +34,7 @@ class LogisticRegression(LinearRegression) :
 
    def _newton_raphson(self, X, y, max_iter=1000, eps=1e-6) :
       """Newton-Raphson method for logistic regression"""
-      X = self.X_bias(X)
+      X = X_bias(X)
       #TODO: Implement Newton-Raphson method for logistic regression
       pass
 
@@ -41,16 +42,24 @@ class LogisticRegression(LinearRegression) :
 class Perceptron(LinearRegression) :
    def __init__(self) :
       self.coef_ = None
-      self.n_iterations_ = None
 
    def predict(self, X, add_bias=True) :
       if add_bias :
-         X = self.X_bias(X)
+         X = X_bias(X)
       linear_output = X @ self.coef_
       return (linear_output >= 0).astype(int)
    
-   def fit(self, X, y, learning_rate=0.01, max_iter=1000, add_bias=True) :
+   def fit(self, X, y, learning_rate=0.01, n_iterations=1000, add_bias=True) :
       if add_bias :
-         X = self.X_bias(X)
-      
-      
+         X = X_bias(X)
+
+      n_features = X.shape[1]
+      self.coef_ = np.zeros(n_features)
+
+      for i in range(n_iterations) :
+         for x_i, y_i in zip(X, y) :
+            y_pred = self.predict(x_i.reshape(1, -1), add_bias=False)
+            update = learning_rate * (y_i - y_pred[0])
+            self.coef_ += update * x_i
+
+   

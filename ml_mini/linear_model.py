@@ -1,4 +1,5 @@
 import numpy as np
+from ml_mini.utils.preprocessing import X_bias
 
 class LinearRegression:
    def __init__(self):
@@ -11,24 +12,18 @@ class LinearRegression:
         np.random.seed(42)  # For reproducibility
         self.coef_ = np.random.rand(n_features)
 
-   def X_bias(self, X):
-        "Add a bias term (intercept) to the input features"
-        n_samples = X.shape[0]
-        bias = np.ones((n_samples, 1))
-        return np.hstack((bias, X))
-
    def predict(self, X, add_bias=True):
         "Predict linear regression output given input X"
 
         if add_bias:
-            X = self.X_bias(X)
+            X = X_bias(X)
         return X @ self.coef_
    
    def _batch_gradient_descent(self, X, y, learning_rate, max_iter, eps=1e-6, _start_coef=None, add_bias=True):
       """Batch Gradient Descent reduces the loss on the entire dataset"""
 
       if add_bias:
-         X = self.X_bias(X)
+         X = X_bias(X)
       n_features = X.shape[1]
 
       if _start_coef is not None:
@@ -53,7 +48,7 @@ class LinearRegression:
       """Stochastic Gradient Descent updates the coefficients for each training example"""
 
       if add_bias:
-         X = self.X_bias(X)
+         X = X_bias(X)
       n_features = X.shape[1]
 
       if _start_coef is not None and _start_intercept is not None:
@@ -62,9 +57,9 @@ class LinearRegression:
          n_features = X.shape[1]
          self._generate_coef(n_features)
     
-      for x, y in zip(X, y):
-         y_pred = self.predict(x, add_bias=False)
-         loss_gradient = (y_pred - y) * x
+      for x_i, y_i in zip(X, y):
+         y_pred = self.predict(x_i.reshape(1, -1), add_bias=False)
+         loss_gradient = (y_pred - y_i) * x_i
 
          self.coef_ -= learning_rate * loss_gradient
    
@@ -105,15 +100,15 @@ class LocallyWeightedLinearRegression(LinearRegression):
    
    def predict(self, X, add_bias=True):
       if add_bias:
-         X = self.X_bias(X)
+         X = X_bias(X)
 
       return X @ self.coef_
    
    def fit(self, x, X, y, learning_rate=0.01, max_iter=1000, eps=1e-6):
       """Fit the model using locally weighted linear regression for a single query point x"""
 
-      X = self.X_bias(X)
-      x = self.X_bias(x.reshape(1, -1)).flatten()
+      X = X_bias(X)
+      x = X_bias(x.reshape(1, -1)).flatten()
 
       self._generate_coef(X.shape[1])
 

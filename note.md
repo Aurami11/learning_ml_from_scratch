@@ -39,3 +39,4 @@ Chapter 2 Statistical Learning is great to fix the basic knowledge statistical l
 
 - Discriminative Learning Algorithm (Opposed to Generative Learning Algorithm) based of p(X|y) (given the output, what does X should look like)and prior p(y).
 - Gaussian Discrimant Analysis
+- Why maximize the joint likelyhood in case of GLA ?

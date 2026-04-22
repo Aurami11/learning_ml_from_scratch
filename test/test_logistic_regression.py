@@ -14,6 +14,16 @@ def test_logistic_regression(X, y, method):
    print("Predicted probabilities:", y_pred_proba)
    print("Predicted classes:", y_pred)
 
+def test_perceptron(X, y):
+   model = logistic_model.Perceptron()
+   model.fit(X, y, learning_rate=0.01, n_iterations=100)
+
+   print("Coefficients:", model.coef_)
+
+   y_pred = model.predict(X)
+
+   print("Predicted classes:", y_pred)
+
 if __name__ == "__main__":
    X = np.array([
          [0, 0],
@@ -32,6 +42,8 @@ if __name__ == "__main__":
    linear_output = X @ true_coef + true_intercept
    y = (linear_output >= 0).astype(int)
 
+   print("===== Logistic Regression Test =====")
+
    print("True Coefficients:", true_coef)
    print("True Intercept:", true_intercept)
 
@@ -39,3 +51,6 @@ if __name__ == "__main__":
    test_logistic_regression(X, y, method='batch')
    print("\nTesting Stochastic Gradient Descent:")
    test_logistic_regression(X, y, method='stochastic')
+
+   print("\n===== Perceptron Test =====")
+   test_perceptron(X, y)
