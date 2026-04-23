@@ -2,6 +2,7 @@
 This module implements the Logistic Regression algorithm for classification tasks, as well as a simple Perceptron model. 
 The Perceptron class implements a basic perceptron learning algorithm for binary classification.
 The implementation still lack the Newton-Raphson method and multiclass classification support, which can be added in future iterations.
+Should also implement boundary decision visualization for 2D datasets.
 """
 
 import numpy as np

@@ -37,7 +37,21 @@ Chapter 2 Statistical Learning is great to fix the basic knowledge statistical l
 
 ### Generative Learning Algorithm 
 
-
 - Discriminative Learning Algorithm (Opposed to Generative Learning Algorithm) based of p(X|y) (given the output, what does X should look like)and prior p(y).
-- Gaussian Discrimant Analysis
+
+#### Gaussian Discrimant Analysis
 - Why maximize the joint likelyhood in case of GLA ?
+- GDA model made stronger assumption than logistic regression
+- When the covariance of GDA is not set to be the same, the decision boundaries may not be linear.
+- When having large amount of data better use logistic because there is enough data to balance out knowledge from assumption.
+- GDA is computationaly less expensive (just calculate matrix whitout any iteration)
+
+#### Naive Bayes
+
+## Extra
+### Source of knowlegde
+- Assumption 
+- Data
+
+### Skill
+- When skilled, you should be able to design a learning algorithm even with small dataset, making the right set of assumption, etc.
